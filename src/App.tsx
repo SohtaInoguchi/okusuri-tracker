@@ -1,57 +1,33 @@
-import React from 'react';
+import React, { createRef } from 'react';
 import logo from './logo.svg';
 import { Counter } from './features/counter/Counter';
 import './App.css';
+import { send } from 'process';
 
 function App() {
+
+  const medicationNameInput = React.createRef<HTMLInputElement>();
+  const pharmacyNameInput = React.createRef<HTMLInputElement>();
+  const hospitalNameInput = React.createRef<HTMLInputElement>();
+  const prescriptionDateInput = React.createRef<HTMLInputElement>();
+
+  const sendData = (e:any) => {
+    e.preventDefault();
+    console.log("input value", 
+    medicationNameInput.current?.value, 
+    pharmacyNameInput.current?.value,
+    hospitalNameInput.current?.value,
+    prescriptionDateInput.current?.value);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
-    </div>
+    <>
+      <input ref={medicationNameInput} type="text" id="name-of-medication" placeholder="Name of medication"/>
+      <input ref={pharmacyNameInput} type="text" id="name-of-pharmacy" placeholder="Name of pharmacy"/>
+      <input ref={hospitalNameInput} type="text" id="name-of-hospital" placeholder="Name of hospital"/>
+      <input ref={prescriptionDateInput} type="date" id="prescription-date" placeholder="Date of prescription"/>
+      <button onClick={sendData}>Send</button>
+    </>
   );
 }
 
