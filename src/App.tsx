@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import { Counter } from './features/counter/Counter';
 import './App.css';
 import { send } from 'process';
+import axios from 'axios';
 
 function App() {
 
@@ -18,6 +19,14 @@ function App() {
     pharmacyNameInput.current?.value,
     hospitalNameInput.current?.value,
     prescriptionDateInput.current?.value);
+    axios.post('/register-medication', {
+      medicationName: medicationNameInput.current?.value,
+      pharmacyName: pharmacyNameInput.current?.value,
+      hospitalName: hospitalNameInput.current?.value,
+      prescriptionDate: prescriptionDateInput.current?.value
+    })
+    .then(res => console.log("response", res))
+    .catch(err => console.error(err));
   }
 
   return (
