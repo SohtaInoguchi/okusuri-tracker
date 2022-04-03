@@ -14,11 +14,6 @@ function App() {
 
   const sendData = (e:any) => {
     e.preventDefault();
-    console.log("input value", 
-    medicationNameInput.current?.value, 
-    pharmacyNameInput.current?.value,
-    hospitalNameInput.current?.value,
-    prescriptionDateInput.current?.value);
     axios.post('/register-medication', {
       medicationName: medicationNameInput.current?.value,
       pharmacyName: pharmacyNameInput.current?.value,
