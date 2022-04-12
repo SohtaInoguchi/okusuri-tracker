@@ -7,7 +7,6 @@ import { AppDataSource } from '../data-source';
 const app: express.Express = express();
 const prescription = new Prescription();
 
-
 const main = async () => {
     try {
         await AppDataSource.initialize();    
@@ -17,14 +16,15 @@ const main = async () => {
         
         const PORT = process.env.PORT || 8000;
 
-        prescription.medicationName = "tylenole";
-        await AppDataSource.manager.save(prescription);
-        console.log("prescription saved");
-
-        app.post('/register-medication', (req: express.Request, res: express.Response) => {
-            const { medicationName, pharmacyName, hospitalName, prescriptionDate } = req.body;
-            console.log('medication name', medicationName);
+        app.post('/register-medication', async (req: express.Request, res: express.Response) => {
             try {
+                const { medicationName, pharmacyName, hospitalName, prescriptionDate } = req.body;
+                prescription.medicationName = medicationName;
+                prescription.pharmacyName = pharmacyName;
+                prescription.hospitalName = hospitalName;
+                prescription.prescriptionDate = prescriptionDate;
+                await AppDataSource.manager.save(prescription);
+                console.log("prescription saved");
                 res.send("server response");
             } catch (error) {
                 res.send("Invalid request");

@@ -8,13 +8,13 @@ export class Prescription extends BaseEntity{
     @Column()
     medicationName!: string
 
-    // @Column()
-    // pharmacyName: string
+    @Column()
+    pharmacyName!: string
 
-    // @Column()
-    // hospitalName: string
+    @Column()
+    hospitalName!: string
 
-    // @Column()
-    // prescriptionDate: Date
+    @Column()
+    prescriptionDate!: Date
     
 }

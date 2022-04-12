@@ -22,6 +22,8 @@ function App() {
     })
     .then(res => console.log("response", res))
     .catch(err => console.error(err));
+
+    medicationNameInput.current!.value = "";
   }
 
   return (
