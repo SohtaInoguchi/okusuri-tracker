@@ -48,6 +48,14 @@ const main = async () => {
             }
         });
 
+        app.get('/login', async (req: express.Request, res: express.Response) => {
+            try {
+                console.log("in login endpoint");
+            } catch (err) {
+                console.error(err)
+            }
+        })
+
         
         app.listen(PORT, () => {
             console.log(`app listening port ${PORT}`);
