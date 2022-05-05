@@ -10,7 +10,7 @@ export default function RegisterNewRecord() {
   
     const sendData = (e:any) => {
       e.preventDefault();
-      axios.post('/register-medication', {
+      axios.post('/register-prescription', {
         medicationName: medicationNameInput.current?.value,
         pharmacyName: pharmacyNameInput.current?.value,
         hospitalName: hospitalNameInput.current?.value,
