@@ -1,38 +1,47 @@
 import React from 'react';
 import { useState } from 'react';
+import axios from 'axios';
 
 export default function Login() {
-  const [user, setUser] = useState('');
+  const [userEmail, setUserEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
-    setUser('');
+    axios.post('/login', {
+      userEmail: userEmail,
+      password: password
+    })
+    .then(res => console.log(res))
+    .catch(err => console.error(err));
+    setUserEmail('');
     setPassword('');
-    console.log(user, password);
   }
 
+  // delete later
   const checkState = () => {
-    console.log(user, password);
+    console.log(userEmail, password);
   }
 
   return (
       <>
       <form onSubmit={handleSubmit}>
         <input 
-          id='username' 
-          value={user} 
+          id='userEmail' 
+          value={userEmail} 
           type="text" 
           placeholder='Enter email address'
-          onChange={e => setUser(e.target.value)}/>
+          onChange={e => setUserEmail(e.target.value)}/>
         <input 
           id='password' 
           value={password} 
-          type="text" 
+          type="password" 
           placeholder='Enter password'
           onChange={e => setPassword(e.target.value)}/>
         <button>Login</button>
       </form>
+
+      {/* delete button later */}
       <button onClick={checkState}>check state</button>
       </>
   )

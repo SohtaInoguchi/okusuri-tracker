@@ -48,15 +48,23 @@ const main = async () => {
             }
         });
 
-        app.get('/login', async (req: express.Request, res: express.Response) => {
+        app.post('/login', async (req: express.Request, res: express.Response) => {
             try {
-                console.log("in login endpoint");
+                const { userEmail, password } = req.body;
+                const loginUser = await AppDataSource.manager.findOneBy(Users, {
+                    email: userEmail,
+                    password: password
+                })
+                if (loginUser === null) {
+                    res.send("No user found, please signup first");
+                }
+                console.log(loginUser);
+                res.send(loginUser);
             } catch (err) {
                 console.error(err)
             }
         })
 
-        
         app.listen(PORT, () => {
             console.log(`app listening port ${PORT}`);
         });
