@@ -1,10 +1,15 @@
 import React from 'react';
 import { useState } from 'react';
 import axios from 'axios';
+import { useAppSelector, useAppDispatch } from './app/hooks';
+import { handleUserEmailLogin, handelUserPasswordLogin } from './features/counter/userSlice';
+import { Check } from 'typeorm';
 
 export default function Login() {
-  const [userEmail, setUserEmail] = useState('');
-  const [password, setPassword] = useState('');
+
+  const dispatch = useAppDispatch();
+  const userEmail = useAppSelector(state => state.login.userEmail);
+  const password = useAppSelector(state => state.login.password);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
@@ -14,14 +19,14 @@ export default function Login() {
     })
     .then(res => console.log(res))
     .catch(err => console.error(err));
-    setUserEmail('');
-    setPassword('');
+    dispatch(handleUserEmailLogin(''));
+    dispatch(handelUserPasswordLogin(''));
   }
 
   // delete later
-  const checkState = () => {
-    console.log(userEmail, password);
-  }
+  // const check = () => {
+  //   console.log(userEmail, password);
+  // }
 
   return (
       <>
@@ -31,18 +36,20 @@ export default function Login() {
           value={userEmail} 
           type="text" 
           placeholder='Enter email address'
-          onChange={e => setUserEmail(e.target.value)}/>
+          onChange={(e) => dispatch(handleUserEmailLogin(e.target.value))}
+          />
         <input 
           id='password' 
           value={password} 
           type="password" 
           placeholder='Enter password'
-          onChange={e => setPassword(e.target.value)}/>
+          onChange={(e) => dispatch(handelUserPasswordLogin(e.target.value))}
+          />
         <button>Login</button>
       </form>
 
       {/* delete button later */}
-      <button onClick={checkState}>check state</button>
+      {/* <button onClick={check}>check</button> */}
       </>
   )
 }

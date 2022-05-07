@@ -51,6 +51,7 @@ const main = async () => {
         app.post('/login', async (req: express.Request, res: express.Response) => {
             try {
                 const { userEmail, password } = req.body;
+                console.log(userEmail, password);
                 const loginUser = await AppDataSource.manager.findOneBy(Users, {
                     email: userEmail,
                     password: password
@@ -58,7 +59,6 @@ const main = async () => {
                 if (loginUser === null) {
                     res.send("No user found, please signup first");
                 }
-                console.log(loginUser);
                 res.send(loginUser);
             } catch (err) {
                 console.error(err)
