@@ -2,14 +2,16 @@ import React from 'react';
 import { useState } from 'react';
 import axios from 'axios';
 import { useAppSelector, useAppDispatch } from './app/hooks';
-import { handleUserEmailLogin, handelUserPasswordLogin } from './features/counter/userSlice';
+import { handleUserEmailLogin, handelUserPasswordLogin, setLoginSuccess } from './features/counter/userSlice';
 import { Check } from 'typeorm';
+import { Navigate, Link } from 'react-router-dom';
 
 export default function Login() {
 
   const dispatch = useAppDispatch();
   const userEmail = useAppSelector(state => state.login.userEmail);
   const password = useAppSelector(state => state.login.password);
+  const isLoginSuccess = useAppSelector(state => state.login.isLoginSuccessful);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
@@ -17,19 +19,29 @@ export default function Login() {
       userEmail: userEmail,
       password: password
     })
-    .then(res => console.log(res))
+    .then(res => {
+      if (res.data === "No user found") {
+        console.log("No matched user");
+      }
+      else {
+        dispatch(setLoginSuccess());
+      }
+    })
     .catch(err => console.error(err));
+
     dispatch(handleUserEmailLogin(''));
     dispatch(handelUserPasswordLogin(''));
   }
 
   // delete later
-  // const check = () => {
-  //   console.log(userEmail, password);
-  // }
+  const check = () => {
+    console.log(isLoginSuccess);
+  }
 
   return (
       <>
+      {isLoginSuccess && <Navigate to='/dashboard' replace/>}
+      {/* {isLoginSuccess ? <Link to='/dashboard'/> :  */}
       <form onSubmit={handleSubmit}>
         <input 
           id='userEmail' 
@@ -47,7 +59,6 @@ export default function Login() {
           />
         <button>Login</button>
       </form>
-
       {/* delete button later */}
       {/* <button onClick={check}>check</button> */}
       </>

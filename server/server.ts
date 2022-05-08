@@ -57,9 +57,11 @@ const main = async () => {
                     password: password
                 })
                 if (loginUser === null) {
-                    res.send("No user found, please signup first");
+                    res.send("No user found");
                 }
-                res.send(loginUser);
+                else {
+                    res.send(loginUser);
+                }
             } catch (err) {
                 console.error(err)
             }
