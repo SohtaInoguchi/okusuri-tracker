@@ -33,15 +33,9 @@ export default function Login() {
     dispatch(handelUserPasswordLogin(''));
   }
 
-  // delete later
-  const check = () => {
-    console.log(isLoginSuccess);
-  }
-
   return (
       <>
       {isLoginSuccess && <Navigate to='/dashboard' replace/>}
-      {/* {isLoginSuccess ? <Link to='/dashboard'/> :  */}
       <form onSubmit={handleSubmit}>
         <input 
           id='userEmail' 
@@ -59,8 +53,6 @@ export default function Login() {
           />
         <button>Login</button>
       </form>
-      {/* delete button later */}
-      {/* <button onClick={check}>check</button> */}
       </>
   )
 }
