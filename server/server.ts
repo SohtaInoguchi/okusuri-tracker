@@ -6,6 +6,8 @@ import { AppDataSource } from '../data-source';
 import { Users } from '../entities/User';
 
 const app: express.Express = express();
+const path = require('path');
+
 const prescription = new Prescription();
 const user = new Users();
 
@@ -15,6 +17,7 @@ const main = async () => {
         
         // middleware
         app.use(express.json());
+        app.use(express.static(path.join(__dirname, '..', 'build')));
         
         const PORT = process.env.PORT || 8000;
 
@@ -70,7 +73,7 @@ const main = async () => {
         })
 
         app.listen(PORT, () => {
-            console.log(`app listening port ${PORT}`);
+            console.log(`app listening port http://localhost:${PORT}`);
         });
         
     } catch (error) {
