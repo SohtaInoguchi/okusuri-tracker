@@ -21,7 +21,9 @@ const main = async () => {
         // endpoint to register new prescription
         app.post('/register-prescription', async (req: express.Request, res: express.Response) => {
             try {
-                const { medicationName, pharmacyName, hospitalName, prescriptionDate } = req.body;
+                const { userEmail, medicationName, pharmacyName, hospitalName, prescriptionDate } = req.body;
+                console.log("user email???", userEmail);
+                prescription.userEmail = userEmail; 
                 prescription.medicationName = medicationName;
                 prescription.pharmacyName = pharmacyName;
                 prescription.hospitalName = hospitalName;

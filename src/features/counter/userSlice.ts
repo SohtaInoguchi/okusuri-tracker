@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState, AppThunk } from '../../app/store';
 import { fetchCount } from './counterAPI';
-
+console.log("in userslice");
 export interface UserLoginState {
   isLoginSuccessful: boolean,
   userEmail: string,
