@@ -29,9 +29,9 @@
   },
   "proxy": "http://localhost:8000",
   "scripts": {
-    "start": "node ./server/server.tsx",
+    "start": "node ./server/server.ts",
     "client": "react-scripts start",
-    "devServer": "tsnd --respawn server/server.tsx",
+    "devServer": "tsnd --respawn server/server.ts",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
