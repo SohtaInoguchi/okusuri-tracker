@@ -29,7 +29,7 @@
   },
   "proxy": "http://localhost:8000",
   "scripts": {
-    "start": "node ./server/server.ts",
+    "start": "ts-node ./server/server.ts",
     "client": "react-scripts start",
     "devServer": "tsnd --respawn server/server.ts",
     "build": "react-scripts build",
