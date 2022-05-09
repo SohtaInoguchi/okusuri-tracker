@@ -5,6 +5,7 @@ import { Prescription } from '../entities/Prescription';
 import { AppDataSource } from '../data-source';
 import { Users } from '../entities/User';
 
+// const express = require('express');
 const app: express.Express = express();
 const path = require('path');
 
