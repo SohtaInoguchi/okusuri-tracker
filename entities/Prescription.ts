@@ -6,6 +6,9 @@ export class Prescription extends BaseEntity{
     id!: number
 
     @Column()
+    userEmail!: string
+
+    @Column()
     medicationName!: string
 
     @Column()
@@ -15,6 +18,6 @@ export class Prescription extends BaseEntity{
     hospitalName!: string
 
     @Column()
-    prescriptionDate!: Date
+    prescriptionDate!: string
     
 }

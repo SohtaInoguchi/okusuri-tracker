@@ -28,9 +28,12 @@ export default function Login() {
       }
     })
     .catch(err => console.error(err));
-
-    dispatch(handleUserEmailLogin(''));
-    dispatch(handelUserPasswordLogin(''));
+    console.log(isLoginSuccess);
+    if (!isLoginSuccess) {
+      console.log("is reset??");
+      dispatch(handleUserEmailLogin(''));
+      dispatch(handelUserPasswordLogin(''));
+    }
   }
 
   return (
